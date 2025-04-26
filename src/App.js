@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
+import Navbar from './components/Navbar';
 import Students from './pages/Students';
 import Chat from './pages/Chat';
-import Navbar from './components/Navbar';
 
 function App() {
   return (
