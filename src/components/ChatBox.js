@@ -48,16 +48,29 @@ export default function ChatBox({ thread, setThreads, threads }) {
                 }}
               >
                 {thread.messages.map((msg, index) => (
-                  <div
-                    key={index}
-                    style={{
-                      textAlign: msg.sender === 'advisor' ? 'right' : 'left',
-                      marginBottom: '10px'
-                    }}
-                  >
-                    <span>{msg.text}</span>
-                  </div>
-                ))}
+                    <div
+                        key={index}
+                        style={{
+                        display: 'flex',
+                        justifyContent: msg.sender === 'advisor' ? 'flex-end' : 'flex-start',
+                        marginBottom: '10px'
+                }}
+                >
+    <div
+      style={{
+        padding: '10px',
+        borderRadius: '10px',
+        backgroundColor: msg.sender === 'advisor' ? '#DCF8C6' : '#f8f8da',
+        maxWidth: '70%',
+        textAlign: 'left',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+      }}
+    >
+      {msg.text}
+    </div>
+  </div>
+))}
+
               </div>
           
               {/* Wrap input and button together */}
@@ -67,12 +80,14 @@ export default function ChatBox({ thread, setThreads, threads }) {
                   placeholder="Type your message..."
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
-                  style={{ width: '80%', marginRight: '10px' }}
+                  style={{ width: '80%', height: '30px',borderRadius: '10px', marginRight: '20px', paddingLeft: '10px' }}
                 />
-                <button onClick={handleSend}>Send</button>
+                <button style={{padding: '10px',backgroundColor: '#4A90E2',color: 'white',border: 'none',borderRadius: '5px',cursor: 'pointer',flex: '1 1 200px',minWidth: '150px', fontFamily:'Roboto'}}
+                onClick={handleSend}>
+                Send
+                </button>
               </div>
           
             </div>
-          
-    );
+          );
 }

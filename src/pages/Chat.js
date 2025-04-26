@@ -43,10 +43,11 @@ export default function Chat() {
     flexDirection: window.innerWidth < 768 ? 'column' : 'row',
     height: '80vh',
     padding: '20px',
-    gap: '20px'
+    gap: '20px',
+    fontFamily:'Roboto'
   }}
 >
-  <ChatThreads threads={threads} setCurrentThreadId={setCurrentThreadId} />
+  <ChatThreads threads={threads} setCurrentThreadId={setCurrentThreadId} currentThreadId={currentThreadId}/>
   <ChatBox thread={currentThread} setThreads={setThreads} threads={threads} />
 </div>
 

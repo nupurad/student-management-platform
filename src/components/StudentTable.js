@@ -29,7 +29,7 @@ export default function StudentTable({ students }) {
   );
 
   return (
-    <div style={{ overflowX: 'auto', marginTop: '20px' }}>
+    <div style={{ overflowX: 'auto', marginTop: '20px', fontFamily:'Roboto' }}>
   <h3>Student List</h3>
 
   {/* Search Bar */}
@@ -42,14 +42,19 @@ export default function StudentTable({ students }) {
   />
 
   {/* Table */}
-  <table border="1" cellPadding="10" cellSpacing="0" width="100%">
+  <table style={{
+    width: '100%',
+    borderCollapse: 'collapse',
+    marginTop: '10px',
+    fontFamily:'Roboto'
+  }}>
   <thead>
     <tr>
-      <th onClick={() => handleSort('id')}>Student ID</th>
-      <th onClick={() => handleSort('name')}>Name</th>
-      <th onClick={() => handleSort('course')}>Course</th>
-      <th onClick={() => handleSort('grade')}>Grade</th>
-      <th onClick={() => handleSort('enrollmentDate')}>Enrollment Date</th>
+      <th style={{backgroundColor: '#f2f2f2',cursor: 'pointer',padding: '12px',borderBottom: '1px solid #ddd',fontFamily:'Roboto',}} onClick={() => handleSort('id')}>Student ID</th>
+      <th style={{backgroundColor: '#f2f2f2',cursor: 'pointer',padding: '12px',borderBottom: '1px solid #ddd',fontFamily:'Roboto',}} onClick={() => handleSort('name')}>Name</th>
+      <th style={{backgroundColor: '#f2f2f2',cursor: 'pointer',padding: '12px',borderBottom: '1px solid #ddd',fontFamily:'Roboto',}} onClick={() => handleSort('course')}>Course</th>
+      <th style={{backgroundColor: '#f2f2f2',cursor: 'pointer',padding: '12px',borderBottom: '1px solid #ddd',fontFamily:'Roboto',}} onClick={() => handleSort('grade')}>Grade</th>
+      <th style={{backgroundColor: '#f2f2f2',cursor: 'pointer',padding: '12px',borderBottom: '1px solid #ddd',fontFamily:'Roboto',}} onClick={() => handleSort('enrollmentDate')}>Enrollment Date</th>
     </tr>
   </thead>
   <tbody>
@@ -60,11 +65,11 @@ export default function StudentTable({ students }) {
     ) : (
       filteredStudents.map((student, index) => (
         <tr key={index}>
-          <td>{student.id}</td>
-          <td>{student.name}</td>
-          <td>{student.course}</td>
-          <td>{student.grade}</td>
-          <td>{student.enrollmentDate}</td>
+          <td style={{padding: '10px',borderBottom: '1px solid #ddd',alignItems:'center',textAlign: 'center',fontFamily:'Roboto',}}> {student.id}</td>
+          <td style={{padding: '10px',borderBottom: '1px solid #ddd',alignItems:'center',textAlign: 'center',fontFamily:'Roboto',}}> {student.name}</td>
+          <td style={{padding: '10px',borderBottom: '1px solid #ddd',alignItems:'center',textAlign: 'center',fontFamily:'Roboto',}}> {student.course}</td>
+          <td style={{padding: '10px',borderBottom: '1px solid #ddd',alignItems:'center',textAlign: 'center',fontFamily:'Roboto',}}> {student.grade}</td>
+          <td style={{padding: '10px',borderBottom: '1px solid #ddd',alignItems:'center',textAlign: 'center',fontFamily:'Roboto',}}> {student.enrollmentDate}</td>
         </tr>
       ))
     )}

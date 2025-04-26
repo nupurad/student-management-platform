@@ -20,8 +20,8 @@ import StudentForm from '../components/StudentForm';
   }, [students]);
   
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>Student Management</h2>
+    <div style={{ padding: '25px' , fontFamily:'Roboto'}}>
+      <h1 style={{textAlign: "center"}}>Student Management</h1>
       <StudentForm setStudents={setStudents} />
       <StudentTable students={students} setStudents={setStudents} />
     </div>
