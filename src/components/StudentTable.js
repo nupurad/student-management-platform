@@ -2,15 +2,36 @@ import { useState } from 'react';
 
 export default function StudentTable({ students }) {
   const [searchTerm, setSearchTerm] = useState('');
+  const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
 
-  const filteredStudents = students.filter(student =>
+  const handleSort = (key) => {
+    let direction = 'asc';
+    if (sortConfig.key === key && sortConfig.direction === 'asc') {
+      direction = 'desc';
+    }
+    setSortConfig({ key, direction });
+  };
+
+  const sortedStudents = [...students].sort((a, b) => {
+    if (!sortConfig.key) return 0;
+
+    const aValue = a[sortConfig.key];
+    const bValue = b[sortConfig.key];
+
+    if (aValue < bValue) return sortConfig.direction === 'asc' ? -1 : 1;
+    if (aValue > bValue) return sortConfig.direction === 'asc' ? 1 : -1;
+    return 0;
+  });
+
+  const filteredStudents = sortedStudents.filter(student =>
     student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     student.id.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <div style={{ marginTop: '20px' }}>
-      
+      <h3>Student List</h3>
+
       {/* Search Bar */}
       <input
         type="text"
@@ -24,11 +45,11 @@ export default function StudentTable({ students }) {
       <table border="1" cellPadding="10" cellSpacing="0" width="100%">
         <thead>
           <tr>
-            <th>Student ID</th>
-            <th>Name</th>
-            <th>Course</th>
-            <th>Grade</th>
-            <th>Enrollment Date</th>
+            <th onClick={() => handleSort('id')}>Student ID</th>
+            <th onClick={() => handleSort('name')}>Name</th>
+            <th onClick={() => handleSort('course')}>Course</th>
+            <th onClick={() => handleSort('grade')}>Grade</th>
+            <th onClick={() => handleSort('enrollmentDate')}>Enrollment Date</th>
           </tr>
         </thead>
         <tbody>
