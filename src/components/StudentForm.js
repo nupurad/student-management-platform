@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function StudentForm({ setStudents }) {
+export default function AddStudentForm({ setStudents }) {
   const [formData, setFormData] = useState({
     id: '',
     name: '',
@@ -41,7 +41,6 @@ export default function StudentForm({ setStudents }) {
       enrollmentDate: '',
     });
 
-    // Clear success message after few seconds (optional)
     setTimeout(() => setMessage(''), 3000);
   };
 
@@ -51,14 +50,23 @@ export default function StudentForm({ setStudents }) {
 
       {message && <p>{message}</p>}
 
-      <form onSubmit={handleSubmit}>
+      {/* --- HERE --- */}
+      <form
+        onSubmit={handleSubmit}
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '10px',
+          marginBottom: '20px'
+        }}
+      >
         <input
           type="text"
           name="id"
           placeholder="Student ID"
           value={formData.id}
           onChange={handleChange}
-          style={{ marginRight: '10px' }}
+          style={{ flex: '1 1 200px', minWidth: '150px' }}
         />
         <input
           type="text"
@@ -66,7 +74,7 @@ export default function StudentForm({ setStudents }) {
           placeholder="Name"
           value={formData.name}
           onChange={handleChange}
-          style={{ marginRight: '10px' }}
+          style={{ flex: '1 1 200px', minWidth: '150px' }}
         />
         <input
           type="text"
@@ -74,7 +82,7 @@ export default function StudentForm({ setStudents }) {
           placeholder="Course"
           value={formData.course}
           onChange={handleChange}
-          style={{ marginRight: '10px' }}
+          style={{ flex: '1 1 200px', minWidth: '150px' }}
         />
         <input
           type="text"
@@ -82,17 +90,20 @@ export default function StudentForm({ setStudents }) {
           placeholder="Grade"
           value={formData.grade}
           onChange={handleChange}
-          style={{ marginRight: '10px' }}
+          style={{ flex: '1 1 200px', minWidth: '150px' }}
         />
         <input
           type="date"
           name="enrollmentDate"
           value={formData.enrollmentDate}
           onChange={handleChange}
-          style={{ marginRight: '10px' }}
+          style={{ flex: '1 1 200px', minWidth: '150px' }}
         />
-        <button type="submit">Add Student</button>
+        <button type="submit" style={{ flex: '1 1 200px', minWidth: '150px' }}>
+          Add Student
+        </button>
       </form>
+      {/* --- END FORM --- */}
     </div>
   );
 }

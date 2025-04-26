@@ -30,25 +30,49 @@ export default function ChatBox({ thread, setThreads, threads }) {
     };
   
     return (
-      <div style={{ width: '70%', padding: '10px' }}>
-        <h3>Chat with {thread.name}</h3>
-        <div style={{ height: '300px', overflowY: 'auto', marginBottom: '10px', border: '1px solid lightgray', padding: '10px' }}>
-          {thread.messages.map((msg, index) => (
-            <div key={index} style={{ textAlign: msg.sender === 'advisor' ? 'right' : 'left', marginBottom: '10px' }}>
-              <span>{msg.text}</span>
+            <div
+              style={{
+                width: window.innerWidth < 768 ? '100%' : '70%',
+                padding: '10px'
+              }}
+            >
+              <h3>Chat with {thread.name}</h3>
+              
+              <div
+                style={{
+                  height: '300px',
+                  overflowY: 'auto',
+                  marginBottom: '10px',
+                  border: '1px solid lightgray',
+                  padding: '10px'
+                }}
+              >
+                {thread.messages.map((msg, index) => (
+                  <div
+                    key={index}
+                    style={{
+                      textAlign: msg.sender === 'advisor' ? 'right' : 'left',
+                      marginBottom: '10px'
+                    }}
+                  >
+                    <span>{msg.text}</span>
+                  </div>
+                ))}
+              </div>
+          
+              {/* Wrap input and button together */}
+              <div style={{ marginTop: '10px' }}>
+                <input
+                  type="text"
+                  placeholder="Type your message..."
+                  value={newMessage}
+                  onChange={(e) => setNewMessage(e.target.value)}
+                  style={{ width: '80%', marginRight: '10px' }}
+                />
+                <button onClick={handleSend}>Send</button>
+              </div>
+          
             </div>
-          ))}
-        </div>
-  
-        <input
-          type="text"
-          placeholder="Type your message..."
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-          style={{ width: '80%', marginRight: '10px' }}
-        />
-        <button onClick={handleSend}>Send</button>
-      </div>
+          
     );
-  }
-  
+}

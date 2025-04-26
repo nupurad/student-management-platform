@@ -29,47 +29,49 @@ export default function StudentTable({ students }) {
   );
 
   return (
-    <div style={{ marginTop: '20px' }}>
-      <h3>Student List</h3>
+    <div style={{ overflowX: 'auto', marginTop: '20px' }}>
+  <h3>Student List</h3>
 
-      {/* Search Bar */}
-      <input
-        type="text"
-        placeholder="Search by name or ID"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        style={{ marginBottom: '10px', padding: '5px', width: '300px' }}
-      />
+  {/* Search Bar */}
+  <input
+    type="text"
+    placeholder="Search by name or ID"
+    value={searchTerm}
+    onChange={(e) => setSearchTerm(e.target.value)}
+    style={{ marginBottom: '10px', padding: '5px', width: '300px' }}
+  />
 
-      {/* Table */}
-      <table border="1" cellPadding="10" cellSpacing="0" width="100%">
-        <thead>
-          <tr>
-            <th onClick={() => handleSort('id')}>Student ID</th>
-            <th onClick={() => handleSort('name')}>Name</th>
-            <th onClick={() => handleSort('course')}>Course</th>
-            <th onClick={() => handleSort('grade')}>Grade</th>
-            <th onClick={() => handleSort('enrollmentDate')}>Enrollment Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredStudents.length === 0 ? (
-            <tr>
-              <td colSpan="5" align="center">No students found</td>
-            </tr>
-          ) : (
-            filteredStudents.map((student, index) => (
-              <tr key={index}>
-                <td>{student.id}</td>
-                <td>{student.name}</td>
-                <td>{student.course}</td>
-                <td>{student.grade}</td>
-                <td>{student.enrollmentDate}</td>
-              </tr>
-            ))
-          )}
-        </tbody>
-      </table>
-    </div>
+  {/* Table */}
+  <table border="1" cellPadding="10" cellSpacing="0" width="100%">
+  <thead>
+    <tr>
+      <th onClick={() => handleSort('id')}>Student ID</th>
+      <th onClick={() => handleSort('name')}>Name</th>
+      <th onClick={() => handleSort('course')}>Course</th>
+      <th onClick={() => handleSort('grade')}>Grade</th>
+      <th onClick={() => handleSort('enrollmentDate')}>Enrollment Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {filteredStudents.length === 0 ? (
+      <tr>
+        <td colSpan="5" align="center">No students found</td>
+      </tr>
+    ) : (
+      filteredStudents.map((student, index) => (
+        <tr key={index}>
+          <td>{student.id}</td>
+          <td>{student.name}</td>
+          <td>{student.course}</td>
+          <td>{student.grade}</td>
+          <td>{student.enrollmentDate}</td>
+        </tr>
+      ))
+    )}
+  </tbody>
+</table>
+
+</div>
+
   );
 }
