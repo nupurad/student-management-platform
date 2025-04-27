@@ -4,13 +4,15 @@ export default function StudentTable({ students }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
 
-  const handleSort = (key) => {
-    let direction = 'asc';
-    if (sortConfig.key === key && sortConfig.direction === 'asc') {
-      direction = 'desc';
+
+  const handleSortDropdown = (key, direction) => {
+    if (direction === '') {
+      setSortConfig({ key: null, direction: 'asc' });
+    } else {
+      setSortConfig({ key, direction });
     }
-    setSortConfig({ key, direction });
   };
+  
 
   const sortedStudents = [...students].sort((a, b) => {
     if (!sortConfig.key) return 0;
@@ -49,13 +51,151 @@ export default function StudentTable({ students }) {
     fontFamily:'Roboto'
   }}>
   <thead>
-    <tr>
-      <th style={{backgroundColor: '#f2f2f2',cursor: 'pointer',padding: '12px',borderBottom: '1px solid #ddd',fontFamily:'Roboto',}} onClick={() => handleSort('id')}>Student ID</th>
-      <th style={{backgroundColor: '#f2f2f2',cursor: 'pointer',padding: '12px',borderBottom: '1px solid #ddd',fontFamily:'Roboto',}} onClick={() => handleSort('name')}>Name</th>
-      <th style={{backgroundColor: '#f2f2f2',cursor: 'pointer',padding: '12px',borderBottom: '1px solid #ddd',fontFamily:'Roboto',}} onClick={() => handleSort('course')}>Course</th>
-      <th style={{backgroundColor: '#f2f2f2',cursor: 'pointer',padding: '12px',borderBottom: '1px solid #ddd',fontFamily:'Roboto',}} onClick={() => handleSort('grade')}>Grade</th>
-      <th style={{backgroundColor: '#f2f2f2',cursor: 'pointer',padding: '12px',borderBottom: '1px solid #ddd',fontFamily:'Roboto',}} onClick={() => handleSort('enrollmentDate')}>Enrollment Date</th>
-    </tr>
+  <tr>
+  <th
+  style={{
+    backgroundColor: '#f2f2f2',
+    padding: '12px',
+    borderBottom: '1px solid #ddd',
+    fontFamily: 'Roboto',
+    textAlign: 'center'
+  }}
+>
+  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <span>Student ID</span>
+    <select
+      onChange={(e) => handleSortDropdown('id', e.target.value)}
+      style={{
+        marginLeft: '10px',
+        fontSize: '12px',
+        borderRadius: '5px',
+        padding: '2px 5px',
+        border: '1px solid #ccc',
+        borderBottom: '1px solid #ddd',
+        borderRight: '1px solid #ddd',
+      }}
+    >
+      <option value="">--</option>
+      <option value="asc">⬆️ Asc</option>
+      <option value="desc">⬇️ Desc</option>
+    </select>
+  </div>
+</th>
+
+<th
+  style={{
+    backgroundColor: '#f2f2f2',
+    padding: '12px',
+    borderBottom: '1px solid #ddd',
+    fontFamily: 'Roboto',
+    textAlign: 'center'
+  }}
+>
+  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <span>Name</span>
+    <select
+      onChange={(e) => handleSortDropdown('id', e.target.value)}
+      style={{
+        marginLeft: '10px',
+        fontSize: '12px',
+        borderRadius: '5px',
+        padding: '2px 5px',
+        border: '1px solid #ccc'
+      }}
+    >
+      <option value="">--</option>
+      <option value="asc">⬆️ Asc</option>
+      <option value="desc">⬇️ Desc</option>
+    </select>
+  </div>
+</th>
+
+<th
+  style={{
+    backgroundColor: '#f2f2f2',
+    padding: '12px',
+    borderBottom: '1px solid #ddd',
+    fontFamily: 'Roboto',
+    textAlign: 'center'
+  }}
+>
+  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <span>Course</span>
+    <select
+      onChange={(e) => handleSortDropdown('id', e.target.value)}
+      style={{
+        marginLeft: '10px',
+        fontSize: '12px',
+        borderRadius: '5px',
+        padding: '2px 5px',
+        border: '1px solid #ccc'
+      }}
+    >
+      <option value="">--</option>
+      <option value="asc">⬆️ Asc</option>
+      <option value="desc">⬇️ Desc</option>
+    </select>
+  </div>
+</th>
+
+<th
+  style={{
+    backgroundColor: '#f2f2f2',
+    padding: '12px',
+    borderBottom: '1px solid #ddd',
+    fontFamily: 'Roboto',
+    textAlign: 'center'
+  }}
+>
+  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <span>Grade</span>
+    <select
+      onChange={(e) => handleSortDropdown('id', e.target.value)}
+      style={{
+        marginLeft: '10px',
+        fontSize: '12px',
+        borderRadius: '5px',
+        padding: '2px 5px',
+        border: '1px solid #ccc'
+      }}
+    >
+      <option value="">--</option>
+      <option value="asc">⬆️ Asc</option>
+      <option value="desc">⬇️ Desc</option>
+    </select>
+  </div>
+</th>
+
+<th
+  style={{
+    backgroundColor: '#f2f2f2',
+    padding: '12px',
+    borderBottom: '1px solid #ddd',
+    fontFamily: 'Roboto',
+    textAlign: 'center'
+  }}
+>
+  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <span>Enrollment Date</span>
+    <select
+      onChange={(e) => handleSortDropdown('id', e.target.value)}
+      style={{
+        marginLeft: '10px',
+        fontSize: '12px',
+        borderRadius: '5px',
+        padding: '2px 5px',
+        border: '1px solid #ccc'
+      }}
+    >
+      <option value="">--</option>
+      <option value="asc">⬆️ Asc</option>
+      <option value="desc">⬇️ Desc</option>
+    </select>
+  </div>
+</th>
+</tr>
+
+
   </thead>
   <tbody>
     {filteredStudents.length === 0 ? (
@@ -65,11 +205,11 @@ export default function StudentTable({ students }) {
     ) : (
       filteredStudents.map((student, index) => (
         <tr key={index}>
-          <td style={{padding: '10px',borderBottom: '1px solid #ddd',alignItems:'center',textAlign: 'center',fontFamily:'Roboto',}}> {student.id}</td>
-          <td style={{padding: '10px',borderBottom: '1px solid #ddd',alignItems:'center',textAlign: 'center',fontFamily:'Roboto',}}> {student.name}</td>
-          <td style={{padding: '10px',borderBottom: '1px solid #ddd',alignItems:'center',textAlign: 'center',fontFamily:'Roboto',}}> {student.course}</td>
-          <td style={{padding: '10px',borderBottom: '1px solid #ddd',alignItems:'center',textAlign: 'center',fontFamily:'Roboto',}}> {student.grade}</td>
-          <td style={{padding: '10px',borderBottom: '1px solid #ddd',alignItems:'center',textAlign: 'center',fontFamily:'Roboto',}}> {student.enrollmentDate}</td>
+          <td style={{padding: '10px',alignItems:'center',textAlign: 'center',fontFamily:'Roboto',borderBottom: '1px solid #ddd',borderRight: '1px solid #ddd',}}> {student.id}</td>
+          <td style={{padding: '10px',alignItems:'center',textAlign: 'center',fontFamily:'Roboto',borderBottom: '1px solid #ddd',borderRight: '1px solid #ddd',}}> {student.name}</td>
+          <td style={{padding: '10px',alignItems:'center',textAlign: 'center',fontFamily:'Roboto',borderBottom: '1px solid #ddd',borderRight: '1px solid #ddd',}}> {student.course}</td>
+          <td style={{padding: '10px',alignItems:'center',textAlign: 'center',fontFamily:'Roboto',borderBottom: '1px solid #ddd',borderRight: '1px solid #ddd',}}> {student.grade}</td>
+          <td style={{padding: '10px',alignItems:'center',textAlign: 'center',fontFamily:'Roboto',borderBottom: '1px solid #ddd',borderRight: '1px solid #ddd',}}> {student.enrollmentDate}</td>
         </tr>
       ))
     )}
@@ -80,3 +220,4 @@ export default function StudentTable({ students }) {
 
   );
 }
+
